@@ -5,34 +5,45 @@ public class GrabSystem : MonoBehaviour
 {
     private bool isGrabbing = false;
     private bool isGrabbingHAND = false;
-    private GameObject grabbedObject;
-    private Rigidbody grabbedRigidbody;
-    private Transform grabPosition;
+    protected GameObject grabbedObject;
+    protected Rigidbody grabbedRigidbody;
+    protected Transform grabPosition;
+   
 
-    [SerializeField] private KeyCode grabKey = KeyCode.G; // Você pode mudar a tecla conforme necessário
-    [SerializeField] private Transform defaultGrabPosition; // Posição padrão para segurar o objeto
-    [SerializeField] private float grabRange = 2f; // Distância máxima para pegar objetos
-    [SerializeField] private LayerMask grabbableLayer; // Camada de objetos pegáveis
-    [SerializeField] private float throwForce = 10f; // Força do lançamento
-    private Animator animator;
+    [SerializeField] protected KeyCode grabKey = KeyCode.G; // Você pode mudar a tecla conforme necessário
+    [SerializeField] protected float grabRange = 2f; // Distância máxima para pegar objetos
+    [SerializeField] protected LayerMask grabbableLayer; // Camada de objetos pegáveis
+    [SerializeField] protected float throwForce = 10f; // Força do lançamento
+    protected Animator animator;
 
     private Transform grabPositionHAND;
     [SerializeField] private KeyCode grabKeyHAND = KeyCode.G; // Você pode mudar a tecla conforme necessário
-    [SerializeField] private Transform defaultGrabPositionHAND; // Posição padrão para segurar o objeto
     [SerializeField] private LayerMask grabbableLayerHAND; // Camada de objetos pegáveis
-   
+
+
+
+    public Transform HANDPOS; // Referência para o transform da mão do jogador
+    public Vector3 offsetRotacaoHAND = new Vector3(0f, 0f, 90f);
+    public Vector3 offsetPositionHAND = new Vector3(0f, 0f, 0f);
+    public Transform HEADPOS; // Referência para o transform da mão do jogador
+    public Vector3 offsetRotateHEAD = new Vector3(0f, 0f, 0f);
+    public Vector3 offsetPositionHEAD = new Vector3(0f, 0f, 0f);
 
 
 
     void Start()
     {
-        grabPosition = defaultGrabPosition;
-        grabPositionHAND = defaultGrabPositionHAND;
+        
         animator = GetComponent<Animator>();
     }
 
     void Update()
     {
+     
+
+
+
+
         if (Input.GetKeyDown(grabKey))
         {
             if (!isGrabbingHAND)
@@ -144,17 +155,19 @@ public class GrabSystem : MonoBehaviour
     {
         if (grabbedObject != null)
         {
-            grabbedObject.transform.position = grabPosition.position;
-            grabbedObject.transform.rotation = grabPosition.rotation;
+           
+            grabbedObject.transform.position = HEADPOS.position + offsetPositionHEAD ; // Define a posição do item para a posição da mão do jogador
+            grabbedObject.transform.rotation = HEADPOS.rotation * Quaternion.Euler(offsetRotateHEAD); ;// Define a rotação do item para a rotação da mão do jogador
+
         }
-      
+
     }
     void UpdateGrabbedObjectPositionHAND()
     {
         if (grabbedObject != null)
         {
-            grabbedObject.transform.position = grabPositionHAND.position;
-            grabbedObject.transform.rotation = grabPositionHAND.rotation;
+            grabbedObject.transform.position = HANDPOS.position + offsetPositionHAND;
+            grabbedObject.transform.rotation = HANDPOS.rotation * Quaternion.Euler(offsetRotacaoHAND);
         }
 
     }
