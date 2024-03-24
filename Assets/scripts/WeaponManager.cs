@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Item : MonoBehaviour
@@ -9,6 +10,10 @@ public class Item : MonoBehaviour
     {
         // Obtendo o componente GrabSystem do mesmo GameObject
         grabSystem = GetComponent<GrabSystem>();
+        if (grabSystem == null)
+        {
+            Debug.LogError("GrabSystem não encontrado no GameObject pai de: " + gameObject.name);
+        }
     }
 
     public void Use()
@@ -31,7 +36,7 @@ public class Item : MonoBehaviour
         }
     }
 
-    void UseTacoMechanic()
+    public void UseTacoMechanic()
     {
         // Verifica se o botão do mouse está sendo pressionado
         if (Input.GetMouseButton(0))
@@ -41,7 +46,7 @@ public class Item : MonoBehaviour
         }
     }
 
-    void UseEspadaMechanic()
+    public void UseEspadaMechanic()
     {
         // Implemente a mecânica específica para o item "espada" aqui
         Debug.Log("Utilizando a mecânica para o item 'espada'.");
