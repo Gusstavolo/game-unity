@@ -1,28 +1,29 @@
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
 
+
+
 public class GrabSystem : MonoBehaviour
 {
     private bool isGrabbing = false;
     private bool isGrabbingHAND = false;
-    protected GameObject grabbedObject;
-    protected Rigidbody grabbedRigidbody;
-    protected Transform grabPosition;
+    public GameObject grabbedObject;
+    public Transform HANDPOS; // Referência para o transform da mão do jogador
+    private Rigidbody grabbedRigidbody;
+    private Transform grabPosition;
    
 
     [SerializeField] protected KeyCode grabKey = KeyCode.G; // Você pode mudar a tecla conforme necessário
     [SerializeField] protected float grabRange = 2f; // Distância máxima para pegar objetos
     [SerializeField] protected LayerMask grabbableLayer; // Camada de objetos pegáveis
     [SerializeField] protected float throwForce = 10f; // Força do lançamento
-    protected Animator animator;
+    private Animator animator;
 
     private Transform grabPositionHAND;
     [SerializeField] private KeyCode grabKeyHAND = KeyCode.G; // Você pode mudar a tecla conforme necessário
     [SerializeField] private LayerMask grabbableLayerHAND; // Camada de objetos pegáveis
 
 
-
-    public Transform HANDPOS; // Referência para o transform da mão do jogador
     public Vector3 offsetRotacaoHAND = new Vector3(0f, 0f, 90f);
     public Vector3 offsetPositionHAND = new Vector3(0f, 0f, 0f);
     public Transform HEADPOS; // Referência para o transform da mão do jogador
@@ -117,6 +118,12 @@ public class GrabSystem : MonoBehaviour
                 grabbedObject = collider.gameObject;
                 grabbedRigidbody = grabbedObject.GetComponent<Rigidbody>();
                 grabbedRigidbody.isKinematic = true; // Torna o objeto cinemático
+
+                Item itemComponent = grabbedObject.GetComponent<Item>();
+                if (itemComponent != null)
+                {
+                    itemComponent.Use(); // Chama o método Use() do componente Item
+                }
                 break;
             }
         }
@@ -138,7 +145,7 @@ public class GrabSystem : MonoBehaviour
     }
     void ReleaseGrabHAND()
     {
-
+      
         if (grabbedObject != null && grabbedRigidbody != null)
         {
           
@@ -147,6 +154,7 @@ public class GrabSystem : MonoBehaviour
             grabbedRigidbody = null;
             grabbedObject = null;
             isGrabbingHAND = false;
+
         }
     }
      
