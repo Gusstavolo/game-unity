@@ -202,7 +202,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f2d748720e949d4bb71943f1bc16430, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 651931125}
   m_SourcePrefab: {fileID: 100100000, guid: 4f2d748720e949d4bb71943f1bc16430, type: 3}
 --- !u!4 &123671466 stripped
 Transform:
@@ -455,18 +458,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e3a973a209eec4580c22b80a75a8f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrabbingHAND: 0
+  grabbedObject: {fileID: 0}
   grabKey: 103
-  defaultGrabPosition: {fileID: 0}
   grabRange: 2
   grabbableLayer:
     serializedVersion: 2
     m_Bits: 0
   throwForce: 10
   grabKeyHAND: 103
-  defaultGrabPositionHAND: {fileID: 0}
   grabbableLayerHAND:
     serializedVersion: 2
     m_Bits: 0
+  HANDPOS: {fileID: 0}
+  offsetRotacaoHAND: {x: 0, y: 0, z: 90}
+  offsetPositionHAND: {x: 0, y: 0, z: 0}
+  HEADPOS: {fileID: 0}
+  offsetRotateHEAD: {x: 0, y: 0, z: 0}
+  offsetPositionHEAD: {x: 0, y: 0, z: 0}
 --- !u!114 &424344564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,6 +1043,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -1032999893032839046, guid: 76c7568780ad8e3498ce6b657179a9a4, type: 3}
   m_PrefabInstance: {fileID: 197116618}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &651931124 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4f2d748720e949d4bb71943f1bc16430, type: 3}
+  m_PrefabInstance: {fileID: 85608279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &651931125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651931124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f6515168653534fbde9ac6aedce370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetRotacao: {x: 90, y: 0, z: 0}
+  grabSystem: {fileID: 0}
+  itemName: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,7 +1644,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &963261088
+--- !u!114 &963261090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1627,6 +1656,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f6515168653534fbde9ac6aedce370, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offsetRotacao: {x: 90, y: 0, z: 0}
+  grabSystem: {fileID: 1255379742}
+  itemName: taco
 --- !u!1 &971833519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,18 +1890,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68e3a973a209eec4580c22b80a75a8f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGrabbingHAND: 0
+  grabbedObject: {fileID: 0}
   grabKey: 101
-  defaultGrabPosition: {fileID: 971833520}
   grabRange: 2
   grabbableLayer:
     serializedVersion: 2
     m_Bits: 64
   throwForce: 10
   grabKeyHAND: 102
-  defaultGrabPositionHAND: {fileID: 154777175}
   grabbableLayerHAND:
     serializedVersion: 2
     m_Bits: 128
+  HANDPOS: {fileID: 154777175}
+  offsetRotacaoHAND: {x: 0, y: 0, z: 0}
+  offsetPositionHAND: {x: 0, y: 0, z: 0}
+  HEADPOS: {fileID: 971833520}
+  offsetRotateHEAD: {x: 0, y: 0, z: 0}
+  offsetPositionHEAD: {x: 0, y: 0, z: 0}
 --- !u!95 &1255379743
 Animator:
   serializedVersion: 7
@@ -2018,6 +2056,7 @@ GameObject:
   - component: {fileID: 1304586174}
   - component: {fileID: 1304586173}
   - component: {fileID: 1304586175}
+  - component: {fileID: 1304586176}
   m_Layer: 7
   m_Name: BLOBLEGUN
   m_TagString: Grabbable
@@ -2110,6 +2149,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6, y: 1.1305995, z: 0.55650616}
   m_Center: {x: 0, y: 0.28582063, z: 0.23390341}
+--- !u!114 &1304586176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304586171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6f6515168653534fbde9ac6aedce370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetRotacao: {x: 90, y: 0, z: 0}
+  grabSystem: {fileID: 0}
+  itemName: asdsa
 --- !u!4 &1519313059 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1032999893032839046, guid: 76c7568780ad8e3498ce6b657179a9a4, type: 3}
@@ -2246,7 +2300,7 @@ PrefabInstance:
       addedObject: {fileID: 963261085}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e9295b14202f884cae9b0d50c1b78b2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 963261088}
+      addedObject: {fileID: 963261090}
   m_SourcePrefab: {fileID: 100100000, guid: 0e9295b14202f884cae9b0d50c1b78b2, type: 3}
 --- !u!1 &1882909681
 GameObject:

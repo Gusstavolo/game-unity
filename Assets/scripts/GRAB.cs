@@ -6,11 +6,11 @@ using UnityEngine.UIElements.Experimental;
 public class GrabSystem : MonoBehaviour
 {
     private bool isGrabbing = false;
-    private bool isGrabbingHAND = false;
+    public bool isGrabbingHAND = false;
     public GameObject grabbedObject;
   
     private Rigidbody grabbedRigidbody;
-    private Transform grabPosition;
+    
    
 
     [SerializeField] protected KeyCode grabKey = KeyCode.G; // Você pode mudar a tecla conforme necessário
@@ -19,11 +19,13 @@ public class GrabSystem : MonoBehaviour
     [SerializeField] protected float throwForce = 10f; // Força do lançamento
     private Animator animator;
 
-    private Transform grabPositionHAND;
+    
     [SerializeField] private KeyCode grabKeyHAND = KeyCode.G; // Você pode mudar a tecla conforme necessário
     [SerializeField] private LayerMask grabbableLayerHAND; // Camada de objetos pegáveis
 
-  public Transform HANDPOS; // Referência para o transform da mão do jogador
+
+
+    public Transform HANDPOS; // Referência para o transform da mão do jogador
     public Vector3 offsetRotacaoHAND = new Vector3(0f, 0f, 90f);
     public Vector3 offsetPositionHAND = new Vector3(0f, 0f, 0f);
     public Transform HEADPOS; // Referência para o transform da mão do jogador
@@ -34,13 +36,12 @@ public class GrabSystem : MonoBehaviour
 
     void Start()
     {
-        
+      
         animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-     
 
 
 
@@ -67,12 +68,14 @@ public class GrabSystem : MonoBehaviour
        
         if (Input.GetKeyDown(grabKeyHAND) )
         {
+            
             if (!isGrabbing)
             {
                   if (!isGrabbingHAND)
                         {
                             TryGrabHAND();
-                        }
+                   
+                }
                   else
                       {
                            ReleaseGrabHAND();
@@ -102,6 +105,7 @@ public class GrabSystem : MonoBehaviour
                 grabbedObject = collider.gameObject;
                 grabbedRigidbody = grabbedObject.GetComponent<Rigidbody>();
                 grabbedRigidbody.isKinematic = true; // Torna o objeto cinemático
+
                 break;
             }
         }
@@ -119,11 +123,6 @@ public class GrabSystem : MonoBehaviour
                 grabbedRigidbody = grabbedObject.GetComponent<Rigidbody>();
                 grabbedRigidbody.isKinematic = true; // Torna o objeto cinemático
 
-                Item itemComponent = grabbedObject.GetComponent<Item>();
-                if (itemComponent != null)
-                {
-                    itemComponent.Use(); // Chama o método Use() do componente Item
-                }
                 break;
             }
         }
@@ -180,6 +179,7 @@ public class GrabSystem : MonoBehaviour
         }
 
     }
+
 
 
     void OnDrawGizmosSelected()
