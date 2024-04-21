@@ -382,6 +382,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 76c7568780ad8e3498ce6b657179a9a4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1255379749}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 76c7568780ad8e3498ce6b657179a9a4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1255379750}
   m_SourcePrefab: {fileID: 100100000, guid: 76c7568780ad8e3498ce6b657179a9a4, type: 3}
 --- !u!4 &386229942 stripped
 Transform:
@@ -1644,21 +1647,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &963261090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963261083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6f6515168653534fbde9ac6aedce370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetRotacao: {x: 90, y: 0, z: 0}
-  grabSystem: {fileID: 1255379742}
-  itemName: taco
 --- !u!1 &971833519
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,6 +2027,19 @@ MonoBehaviour:
   tempoForaDoChao: 0
   velocidadeRotacao: 100
   isGrounded: 0
+--- !u!114 &1255379750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255379741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e94a677754a39d644a7fcf4fab9a7aaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: taco
 --- !u!4 &1259048596 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7592583473100267299, guid: 76c7568780ad8e3498ce6b657179a9a4, type: 3}
@@ -2298,9 +2299,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e9295b14202f884cae9b0d50c1b78b2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 963261085}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e9295b14202f884cae9b0d50c1b78b2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 963261090}
   m_SourcePrefab: {fileID: 100100000, guid: 0e9295b14202f884cae9b0d50c1b78b2, type: 3}
 --- !u!1 &1882909681
 GameObject:

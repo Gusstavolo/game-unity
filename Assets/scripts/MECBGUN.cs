@@ -19,6 +19,7 @@ public class MAINGUN : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         GameObject objToGrab = GetObjectToGrab(); // Lógica para obter o objeto a ser agarrado
         string itemName = GetItemName(); // Lógica para obter o nome do item
         grabSystem.GrabObject(objToGrab, itemName);
@@ -26,7 +27,7 @@ public class MAINGUN : MonoBehaviour
         {
             UseTacoMechanic();
         }
-       
+       */
     }
 
     void UseTacoMechanic()
